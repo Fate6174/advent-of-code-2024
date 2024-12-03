@@ -1,6 +1,6 @@
 import os
 
-base_link = "https://github.com/Fate6174/advent-of-code-2024/main/src/"
+base_link = "https://github.com/Fate6174/advent-of-code-2024/blob/main/src/"
 
 
 def parse(e):
