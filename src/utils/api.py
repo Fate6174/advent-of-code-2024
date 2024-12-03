@@ -1,7 +1,6 @@
 import requests
 from os.path import exists
-from bs4 import BeautifulSoup, ResultSet, Tag
-import re
+from bs4 import BeautifulSoup, Tag
 
 def get_session_id(filename):
     with open(filename) as f:
