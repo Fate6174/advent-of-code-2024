@@ -41,6 +41,6 @@ for i in range(1,m-1):
                 [input_matrix[i-idx_shift][j-idx_shift] for idx_shift in [-1,0,1]],
                 [input_matrix[i+idx_shift][j-idx_shift] for idx_shift in [-1,0,1]]
             ]
-            res += 1 if all([''.join(item) == 'MAS' or ''.join(item) == 'SAM' for item in l]) else 0
+            res += 1 if all([''.join(item) in ['MAS', 'SAM'] for item in l]) else 0
 
 print(f'part2: {res}')
