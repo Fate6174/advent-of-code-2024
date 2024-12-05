@@ -1,5 +1,5 @@
 import os
-from api import get_name
+from api import get_name, YEAR
 
 base_link = "https://github.com/Fate6174/advent-of-code-2024/blob/main/src/"
 
@@ -12,7 +12,7 @@ def parse(e):
 
 solutions = filter(lambda x: ".py" in x and "init" not in x, os.listdir("src"))
 
-readme_content = "# Advent of code\n\nProblems list:\n\n"
+readme_content = f"# Advent of code {YEAR}\n\nProblems list:\n\n"
 tmp = [f"- {parse(e)}" for i, e in enumerate(sorted(solutions))]
 readme_content += "\n".join(tmp)
 
