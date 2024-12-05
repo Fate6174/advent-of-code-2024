@@ -9,17 +9,14 @@ updates = [[int(x) for x in item.split(',')] for item in input_str[sep_idx+2:].s
 
 def sort(rules : list[tuple[int,int]]) -> list[int]:
     out = []
-    while rules != []:
-        if len(rules) == 1:
-            out += [rules[0][0], rules[0][1]]
-            rules = []
-        else:
-            smallest_numbers = {a for a,b in rules} - {b for a,b in rules}
-            if len(smallest_numbers) != 1:
-                raise RuntimeError(f'No unique minimum in {rules}.')
-            smallest_number = smallest_numbers.pop()
-            out += [smallest_number]
-            rules = [item for item in rules if item[0] != smallest_number]
+    while len(rules) > 1:
+        smallest_numbers = {a for a,b in rules} - {b for a,b in rules}
+        if len(smallest_numbers) != 1:
+            raise RuntimeError(f'No unique minimum in {rules}.')
+        smallest_number = smallest_numbers.pop()
+        out += [smallest_number]
+        rules = [item for item in rules if item[0] != smallest_number]
+    out += [rules[0][0], rules[0][1]]
     return out
 
 # part 1
