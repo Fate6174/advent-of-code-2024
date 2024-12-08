@@ -9,5 +9,6 @@ Problems list:
 - [Day 5: Print Queue](https://github.com/Fate6174/advent-of-code-2024/blob/main/src/05.py)
 - [Day 6: Guard Gallivant](https://github.com/Fate6174/advent-of-code-2024/blob/main/src/06.py)
 - [Day 7: Bridge Repair](https://github.com/Fate6174/advent-of-code-2024/blob/main/src/07.py)
+- [Day 8: Resonant Collinearity](https://github.com/Fate6174/advent-of-code-2024/blob/main/src/08.py)
 
 Created via: [advent-of-code-setup](https://github.com/tomfran/advent-of-code-setup)
