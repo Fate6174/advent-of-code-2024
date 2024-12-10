@@ -6,13 +6,12 @@ input_str = get_input(10)
 # WRITE YOUR SOLUTION HERE
 map = np.array([[int(c) for c in line] for line in input_str.splitlines()])
 m, n = map.shape
+# create object array, which will contain paths from the index field in map array to 9's in map array
 arr = np.empty(map.shape, dtype='object')
-for i in range(m):
-    for j in range(n):
-        if map[i,j] == 9:
-            arr[i,j] = [[(i,j)]]
-        else:
-            arr[i,j] = []
+for i, j in zip(*np.where(map != 9)):
+    arr[i, j] = []
+for i, j in zip(*np.where(map == 9)):
+    arr[i, j] = [[(i,j)]]
 
 for k in range(9,0,-1):
     k_idxs = np.where(map == k)
