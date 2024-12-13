@@ -1,20 +1,6 @@
 from utils.api import get_input
 import numpy as np
 
-input_str = """AAAA
-BBCD
-BBCC
-EEEC"""
-input_str = """RRRRIICCFF
-RRRRIICCCF
-VVRRRCCFFF
-VVRCCCJFFF
-VVVVCJJCFE
-VVIVCCJJEE
-VVIIICJJEE
-MIIIIIJJEE
-MIIISIJEEE
-MMMISSJEEE"""
 input_str = get_input(12)
 
 # WRITE YOUR SOLUTION HERE
@@ -31,22 +17,45 @@ while idxs[0].shape[0] > 0:
         x,y = neighbors_of_same_plant_type[0]
         if garden_info[x,y] is None:
             neighbors_2 = [
-                (p,q) for p,q in [(x-1,y), (x,y+1), (x+1,y), (x,y-1)]
+                (p,q,d) for p,q,d in [(x-1,y,'N'), (x,y+1,'E'), (x+1,y,'S'), (x,y-1,'W')]
                     if p >= 0 and p < garden_map.shape[0] and
                     q >= 0 and q < garden_map.shape[1] and
                     garden_map[p,q] == plant_type
             ]
-            fence_pieces = 4 - len(neighbors_2)
-            garden_info[x,y] = (id, fence_pieces)
-            neighbors_3 = [(p,q) for p,q in neighbors_2 if garden_info[p,q] is None]
+            fence_sides = [c for c in 'NESW' if c not in [d for p,q,d in neighbors_2]]
+            num_new_fence_sides = 0
+            if 'N' in fence_sides:
+                if 'N' not in [side for p,q,d in neighbors_2 if d in 'EW' if garden_info[p,q] is not None for side in garden_info[p,q][1]]:
+                    num_new_fence_sides += 1
+            if 'S' in fence_sides:
+                if 'S' not in [side for p,q,d in neighbors_2 if d in 'EW' if garden_info[p,q] is not None for side in garden_info[p,q][1]]:
+                    num_new_fence_sides += 1
+            if 'E' in fence_sides:
+                if 'E' not in [side for p,q,d in neighbors_2 if d in 'SN' if garden_info[p,q] is not None for side in garden_info[p,q][1]]:
+                    num_new_fence_sides += 1
+            if 'W' in fence_sides:
+                if 'W' not in [side for p,q,d in neighbors_2 if d in 'SN' if garden_info[p,q] is not None for side in garden_info[p,q][1]]:
+                    num_new_fence_sides += 1
+            garden_info[x,y] = (id, fence_sides, num_new_fence_sides)
+            neighbors_3 = [(p,q) for p,q,d in neighbors_2 if garden_info[p,q] is None]
             neighbors_of_same_plant_type += neighbors_3
         neighbors_of_same_plant_type = neighbors_of_same_plant_type[1:]
     idxs = np.where(garden_info == None)
     id += 1
 
+# part 1
 res = 0
 for i in range(id):
-    region_list = [fence_pieces for id, fence_pieces in garden_info.flatten() if id == i]
+    region_list = [len(fence_sides) for id, fence_sides, num_new_fence_sides in garden_info.flatten() if id == i]
     res += len(region_list) * sum(region_list)
 
 print(f'part 1: {res}')
+
+# part 2
+# works for all given example cases, but unfortunately the result for the puzzle input is wrong :(
+res = 0
+for i in range(id):
+    region_list = [num_new_fence_sides for id, fence_sides, num_new_fence_sides in garden_info.flatten() if id == i]
+    res += len(region_list) * sum(region_list)
+
+print(f'part 2: {res}')

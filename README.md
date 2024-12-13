@@ -13,5 +13,6 @@ Problems list:
 - [Day 9: Disk Fragmenter](https://github.com/Fate6174/advent-of-code-2024/blob/main/src/09.py)
 - [Day 10: Hoof It](https://github.com/Fate6174/advent-of-code-2024/blob/main/src/10.py)
 - [Day 11: Plutonian Pebbles](https://github.com/Fate6174/advent-of-code-2024/blob/main/src/11.py)
+- [Day 12: Garden Groups](https://github.com/Fate6174/advent-of-code-2024/blob/main/src/12.py)
 
 Created via: [advent-of-code-setup](https://github.com/tomfran/advent-of-code-setup)
