@@ -36,26 +36,26 @@ while idxs[0].shape[0] > 0:
             if 'W' in fence_sides:
                 if 'W' not in [side for p,q,d in neighbors_2 if d in 'SN' if garden_info[p,q] is not None for side in garden_info[p,q][1]]:
                     num_new_fence_sides += 1
-            garden_info[x,y] = (id, fence_sides, num_new_fence_sides)
+            garden_info[x,y] = (id, fence_sides, num_new_fence_sides, (x,y))
             neighbors_3 = [(p,q) for p,q,d in neighbors_2 if garden_info[p,q] is None]
             neighbors_of_same_plant_type += neighbors_3
         neighbors_of_same_plant_type = neighbors_of_same_plant_type[1:]
+        neighbors_of_same_plant_type.sort()
     idxs = np.where(garden_info == None)
     id += 1
 
 # part 1
 res = 0
 for i in range(id):
-    region_list = [len(fence_sides) for id, fence_sides, num_new_fence_sides in garden_info.flatten() if id == i]
+    region_list = [len(fence_sides) for id, fence_sides, num_new_fence_sides, _ in garden_info.flatten() if id == i]
     res += len(region_list) * sum(region_list)
 
 print(f'part 1: {res}')
 
 # part 2
-# works for all given example cases, but unfortunately the result for the puzzle input is wrong :(
 res = 0
 for i in range(id):
-    region_list = [num_new_fence_sides for id, fence_sides, num_new_fence_sides in garden_info.flatten() if id == i]
+    region_list = [num_new_fence_sides for id, fence_sides, num_new_fence_sides, _ in garden_info.flatten() if id == i]
     res += len(region_list) * sum(region_list)
 
 print(f'part 2: {res}')
