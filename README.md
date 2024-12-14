@@ -15,5 +15,6 @@ Problems list:
 - [Day 11: Plutonian Pebbles](https://github.com/Fate6174/advent-of-code-2024/blob/main/src/11.py)
 - [Day 12: Garden Groups](https://github.com/Fate6174/advent-of-code-2024/blob/main/src/12.py)
 - [Day 13: Claw Contraption](https://github.com/Fate6174/advent-of-code-2024/blob/main/src/13.py)
+- [Day 14: Restroom Redoubt](https://github.com/Fate6174/advent-of-code-2024/blob/main/src/14.py)
 
 Created via: [advent-of-code-setup](https://github.com/tomfran/advent-of-code-setup)
